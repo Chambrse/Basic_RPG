@@ -16,7 +16,7 @@ body {
     margin-bottom: 20px;
 }
 
-.character:hover {
+.selectable:hover {
     background-color: gray;
 }
 
@@ -34,4 +34,9 @@ body {
 .name {
     position: absolute;
     top: 7px;
+}
+
+.attackButton {
+    position: absolute;
+    bottom: -50px;
 }
