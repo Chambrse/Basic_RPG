@@ -38,7 +38,6 @@ $(document).ready(function () {
 
     }
 
-
     $(".cWrapper").on("click", function () {
         if (characterChooser == 0) {
             selectCharacter(this.id);
@@ -47,9 +46,10 @@ $(document).ready(function () {
         } else {
             selectEnemy(this.id);
         }
-        $('#' + this.id).removeClass("cWrapper");
+        $('#' + this.id).off("click");
         $('#' + this.id).children().removeClass("selectable");
-    });
+/*         $('#' + this.id).removeClass("col-sm-6 col-md-4 col-lg-3")
+ */    });
 
     $(".attackButton").on("click", function () {
 

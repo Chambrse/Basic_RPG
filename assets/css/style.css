@@ -14,6 +14,7 @@ body {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .selectable:hover {
@@ -21,8 +22,7 @@ body {
 }
 
 .characterImage {
-    max-width:100%;
-    height: auto;
+    width: 100%;
     border: 2px solid black;
 }
 
