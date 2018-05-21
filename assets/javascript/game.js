@@ -46,7 +46,6 @@ $(document).ready(function () {
 
     /* Attack! */
     function attack() {
-        console.log(enemy.health);
     }
 
     $(".cWrapper").on("click", function () {
