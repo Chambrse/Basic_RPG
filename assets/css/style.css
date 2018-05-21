@@ -1,0 +1,37 @@
+body {
+    background-image: url("../images/whiteHouseBackground.jpg");
+    background-position: center top;
+}
+
+.character {
+    width: 200px;
+    height: 200px;
+    padding: 30px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.character:hover {
+    background-color: gray;
+}
+
+.characterImage {
+    max-width:100%;
+    height: auto;
+    border: 2px solid black;
+}
+
+.health {
+    position: absolute;
+    bottom: 7px;
+}
+
+.name {
+    position: absolute;
+    top: 7px;
+}
