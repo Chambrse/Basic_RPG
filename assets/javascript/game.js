@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     /* Initialize variables. */
-    var characterChooser = 0;
+    var characterChooser = true;
     var playerCharacterDiv;
     var enemyDiv;
 
@@ -38,10 +38,8 @@ $(document).ready(function () {
         $("#gameSpace").append(playerCharacterDiv);
         /* add the attackbutton and corresponding event listener */
         $('#' + character).after(attackButton);
-        $(".attackButton").on("click", function() {
-            attack();
-        });
     }
+
 
     function selectEnemy(character) {
         enemy = character;
@@ -55,17 +53,22 @@ $(document).ready(function () {
         $('#' + enemy + '> .character > .health').text(eval(enemy).health);
     }
 
-    $(".cWrapper").on("click", function () {
-        if (characterChooser == 0) {
+    $(".character").on("click", function () {
+        if (characterChooser == true) {
             selectCharacter(this.id);
-            characterChooser++;
+            characterChooser = false;
             $("#toolTip").text("Choose an opponent!")
         } else {
             selectEnemy(this.id);
+            $(".character").off("click");
         }
-        $('#' + this.id).off("click");
-        $('#' + this.id).children().removeClass("selectable");
+        $('#' + this.id).removeClass("selectable");
         $('#' + this.id).removeClass("col-sm-6 col-md-4 col-lg-3");
     });
-
+    
+    $("#gameSpace").on("click", ".attackButton", function () {
+        console.log("test");
+        attack();
+    });
+    console.log("test");
 });
