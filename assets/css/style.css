@@ -4,8 +4,14 @@ body {
     overflow-y: scroll;
 }
 
-#charSelectArea {
+/* #charSelectArea {
     height: 200px;
+} */
+
+#toolTip {
+    border-radius: 5px;
+    background-color: brown;
+    padding: 5px;
 }
 
 .character {
@@ -18,7 +24,7 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
 .selectable:hover {
@@ -43,4 +49,20 @@ body {
 .attackButton {
     position: absolute;
     bottom: -50px;
+}
+
+#gameSpace {
+    background-color: blue;
+    margin: 15px;
+    border-radius: 5px;
+}
+
+#enemySpace {
+    background-color: red;
+    margin: 15px;
+    border-radius: 5px;
+}
+
+.cWrapper {
+    overflow: auto;
 }

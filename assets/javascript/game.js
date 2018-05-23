@@ -2,7 +2,6 @@ $(document).ready(function () {
 
     /* Initialize variables. */
     var characterChooser = 0;
-
     var playerCharacterDiv;
     var enemyDiv;
 
@@ -19,6 +18,12 @@ $(document).ready(function () {
     }
 
     var sanders = {
+        attack: 25,
+        counter: 25,
+        health: 180
+    }
+
+    var kellyanne = {
         attack: 25,
         counter: 25,
         health: 180
@@ -44,8 +49,10 @@ $(document).ready(function () {
         $("#enemySpace").append(enemyDiv);
     }
 
-    /* Attack! */
+    /* Attack! - Note: eval() is used here. JJ says it is dangerous so hopefully there is an alternative. */
     function attack() {
+        eval(enemy).health = eval(enemy).health - eval(playerCharacter).attack;
+        $('#' + enemy + '> .character > .health').text(eval(enemy).health);
     }
 
     $(".cWrapper").on("click", function () {
