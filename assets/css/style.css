@@ -1,7 +1,16 @@
+div {
+    cursor: default;
+    border: 2px solid black;
+}
+
 body {
     background-image: url("../images/whiteHouseBackground.jpg");
     background-position: center top;
     overflow-y: scroll;
+}
+
+.space {
+    height: 300px;
 }
 
 /* #charSelectArea {
@@ -24,7 +33,6 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
-    margin: 20px;
 }
 
 .selectable:hover {
@@ -52,13 +60,13 @@ body {
 }
 
 #gameSpace {
-    background-color: blue;
+    background: rgb(0, 40, 104, 0.8);
     margin: 15px;
     border-radius: 5px;
 }
 
 #enemySpace {
-    background-color: red;
+    background: rgb(191, 10, 48, 0.8);
     margin: 15px;
     border-radius: 5px;
 }

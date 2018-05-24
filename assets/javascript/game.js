@@ -12,18 +12,21 @@ $(document).ready(function () {
 
     /* Character objects */
     var donaldTrump = {
+        baseAttack: 10,
         attack: 25,
         counter: 25,
         health: 180
     }
 
     var sanders = {
+        baseAttack: 10,
         attack: 25,
         counter: 25,
         health: 180
     }
 
-    var kellyanne = {
+    var conway = {
+        baseAttack: 10,
         attack: 25,
         counter: 25,
         health: 180
@@ -40,7 +43,6 @@ $(document).ready(function () {
         $('#' + character).after(attackButton);
     }
 
-
     function selectEnemy(character) {
         enemy = character;
         enemyDiv = $('#' + character).detach();
@@ -49,8 +51,28 @@ $(document).ready(function () {
 
     /* Attack! - Note: eval() is used here. JJ says it is dangerous so hopefully there is an alternative. */
     function attack() {
-        eval(enemy).health = eval(enemy).health - eval(playerCharacter).attack;
-        $('#' + enemy + '> .character > .health').text(eval(enemy).health);
+        /* reduce the defender's health by the attacker's attack */
+        eval(enemy).health -= eval(playerCharacter).attack;
+        $('#' + enemy + '> .health').text(eval(enemy).health);
+        /* reduce the attacker's health by the defender's counter attack */
+        eval(playerCharacter).health -= eval(enemy).counter;
+        $('#' + playerCharacter + '> .health').text(eval(playerCharacter).health);
+
+        /* increase playerCharacter attack power */
+        eval(playerCharacter).attack += eval(playerCharacter).baseAttack;
+
+        /* Check if anyone died */
+
+
+        if (eval(enemy).health <= 0 && eval(playerCharacter).health > 0) {
+            $("#toolTip").text("Choose another opponent!"); 
+
+
+
+        } else if (eval(playerCharacter).health <= 0) {
+            
+        }
+
     }
 
     $(".character").on("click", function () {
@@ -60,8 +82,9 @@ $(document).ready(function () {
             $("#toolTip").text("Choose an opponent!")
         } else {
             selectEnemy(this.id);
-            $(".character").off("click");
+            $(".character").off("click").removeClass("selectable");
         }
+        $('#' + this.id).off("click");
         $('#' + this.id).removeClass("selectable");
         $('#' + this.id).removeClass("col-sm-6 col-md-4 col-lg-3");
     });
@@ -70,5 +93,5 @@ $(document).ready(function () {
         console.log("test");
         attack();
     });
-    console.log("test");
+
 });
