@@ -62,12 +62,9 @@ $(document).ready(function () {
         eval(playerCharacter).attack += eval(playerCharacter).baseAttack;
 
         /* Check if anyone died */
-
-
         if (eval(enemy).health <= 0 && eval(playerCharacter).health > 0) {
             $("#toolTip").text("Choose another opponent!"); 
-
-
+            $('#' + enemy).detach();
 
         } else if (eval(playerCharacter).health <= 0) {
             
@@ -75,18 +72,16 @@ $(document).ready(function () {
 
     }
 
-    $(".character").on("click", function () {
+    $(".wrap").on("click", ".selectable", function () {
         if (characterChooser == true) {
             selectCharacter(this.id);
             characterChooser = false;
-            $("#toolTip").text("Choose an opponent!")
+            $("#toolTip").text("Choose an opponent!");
+            $('#' + this.id).removeClass("selectable");
         } else {
             selectEnemy(this.id);
-            $(".character").off("click").removeClass("selectable");
+            $(".character").removeClass("selectable");
         }
-        $('#' + this.id).off("click");
-        $('#' + this.id).removeClass("selectable");
-        $('#' + this.id).removeClass("col-sm-6 col-md-4 col-lg-3");
     });
     
     $("#gameSpace").on("click", ".attackButton", function () {
