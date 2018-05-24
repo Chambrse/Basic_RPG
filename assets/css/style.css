@@ -81,3 +81,9 @@ body {
 .cWrapper {
     overflow: auto;
 }
+
+#death {
+    width: 100%;
+    position: absolute;
+    padding: 5px 30px;
+}

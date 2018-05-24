@@ -5,6 +5,9 @@ $(document).ready(function () {
     var playerCharacterDiv;
     var enemyDiv;
 
+    /* Sound */
+    var attackSound = new Audio("assets/sounds/attack.mp3");
+
     /* create and store attack button */
     var attackButton = $("<button>");
     attackButton.addClass("btn btn-primary attackButton");
@@ -51,9 +54,13 @@ $(document).ready(function () {
 
     /* Attack! - Note: eval() is used here. JJ says it is dangerous so hopefully there is an alternative. */
     function attack() {
+        /* Attack sound */
+        attackSound.play();
+
         /* reduce the defender's health by the attacker's attack */
         eval(enemy).health -= eval(playerCharacter).attack;
         $('#' + enemy + '> .health').text(eval(enemy).health);
+
         /* reduce the attacker's health by the defender's counter attack */
         eval(playerCharacter).health -= eval(enemy).counter;
         $('#' + playerCharacter + '> .health').text(eval(playerCharacter).health);
@@ -64,7 +71,8 @@ $(document).ready(function () {
         /* Check if anyone died */
         if (eval(enemy).health <= 0 && eval(playerCharacter).health > 0) {
             $("#toolTip").text("Choose another opponent!"); 
-            $('#' + enemy).detach();
+            
+            setTimeout(function() {$('#' + enemy).detach()}, 2000);
 
         } else if (eval(playerCharacter).health <= 0) {
             
