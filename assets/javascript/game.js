@@ -34,9 +34,9 @@ $(document).ready(function () {
         health: 200
     }
 
-    var conway = {
-        baseAttack: 5,
-        attack: 5,
+    var stormy = {
+        baseAttack: 25,
+        attack: 25,
         counter: 75,
         health: 100
     }
@@ -63,6 +63,7 @@ $(document).ready(function () {
         /* Move the enemy */
         enemyDiv = $('#' + character).detach();
         $("#enemySpace").append(enemyDiv);
+        $("#button").addClass("attackButton");
     }
 
     /* Attack! - Note: eval() is used here. JJ says it is dangerous so hopefully there is an alternative. */
@@ -97,15 +98,20 @@ $(document).ready(function () {
             /* count the dead */
             deadEnemies++;
 
+            $(".buttonSpace > #button").removeClass("attackButton");
+
         /* check if you dead */
         } else if (eval(playerCharacter).health <= 0) {
             $("#" + playerCharacter).append(deathPic);
             $("#toolTip").text("You have died!");
+            $(".buttonSpace > #button").removeClass("attackButton");
+            
         }
 
         /* Check if you won! */
         if (deadEnemies === 3) {
             $("#toolTip").text("You've Won!");   
+            $(".buttonSpace > #button").removeClass("attackButton");
         }
         
 

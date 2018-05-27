@@ -20,14 +20,16 @@ body {
     overflow-x: scroll;
 }
 
-.attackButton {
+#button {
     margin: auto;
+    display: flex;
+    align-items: center;
 }
 
 #toolTip {
     border-radius: 5px;
-    background-color: brown;
-    padding: 5px;
+    background-color: white;
+    padding: 10px;
 }
 
 .character {
@@ -87,4 +89,26 @@ body {
     width: 100%;
     position: absolute;
     padding: 5px 30px;
+}
+
+#swords {
+    width: 15px;
+}
+
+.btn-primary {
+    background-color: black;
+    border-color: black;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.wrap {
+    margin-bottom: 15px;
+}
+
+#gameArea {
+    display: flex;
+    justify-content: center;
 }
