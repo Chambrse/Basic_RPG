@@ -4,35 +4,48 @@ $(document).ready(function () {
     var characterChooser = true;
     var playerCharacterDiv;
     var enemyDiv;
+    var deadEnemies = 0;
 
     /* Sound */
     var attackSound = new Audio("assets/sounds/attack.mp3");
 
     /* create and store attack button */
-    var attackButton = $("<button>");
-    attackButton.addClass("btn btn-primary attackButton");
-    attackButton.text("Attack!");
+    /*     var attackButton = $("<button>");
+        attackButton.addClass("btn btn-primary attackButton");
+        attackButton.text("Attack!"); */
+
+    /* create death picture */
+    var deathPic = $("<img>");
+    deathPic.addClass("death");
+    deathPic.attr("src", "assets/images/dead.png");
 
     /* Character objects */
     var donaldTrump = {
         baseAttack: 10,
-        attack: 25,
-        counter: 25,
-        health: 180
+        attack: 10,
+        counter: 15,
+        health: 100
     }
 
     var sanders = {
-        baseAttack: 10,
-        attack: 25,
-        counter: 25,
-        health: 180
+        baseAttack: 15,
+        attack: 15,
+        counter: 10,
+        health: 200
     }
 
     var conway = {
-        baseAttack: 10,
-        attack: 25,
+        baseAttack: 5,
+        attack: 5,
+        counter: 75,
+        health: 100
+    }
+
+    var meuller = {
+        baseAttack: 20,
+        attack: 20,
         counter: 25,
-        health: 180
+        health: 150
     }
 
     /* Character select functions */
@@ -42,12 +55,12 @@ $(document).ready(function () {
         /* remove the character card and move it to game space */
         playerCharacterDiv = $('#' + character).detach();
         $("#gameSpace").append(playerCharacterDiv);
-        /* add the attackbutton and corresponding event listener */
-        $('#' + character).after(attackButton);
-    }
+     }
 
     function selectEnemy(character) {
+        /* Store the enemy */
         enemy = character;
+        /* Move the enemy */
         enemyDiv = $('#' + character).detach();
         $("#enemySpace").append(enemyDiv);
     }
@@ -70,16 +83,37 @@ $(document).ready(function () {
 
         /* Check if anyone died */
         if (eval(enemy).health <= 0 && eval(playerCharacter).health > 0) {
-            $("#toolTip").text("Choose another opponent!"); 
-            
-            setTimeout(function() {$('#' + enemy).detach()}, 2000);
 
+            /* show as dead */
+            $("#" + enemy).append(deathPic);
+
+            /* Wait 2 seconds, then remove the card and make the remaining characters selectable again. */
+            setTimeout(function () {
+                $('#' + enemy).detach();
+                $("#toolTip").text("Choose another opponent!");
+                $("#charSelectArea > .wrap > .character").addClass("selectable");
+            }, 2000);
+
+            /* count the dead */
+            deadEnemies++;
+
+        /* check if you dead */
         } else if (eval(playerCharacter).health <= 0) {
-            
+            $("#" + playerCharacter).append(deathPic);
+            $("#toolTip").text("You have died!");
         }
+
+        /* Check if you won! */
+        if (deadEnemies === 3) {
+            $("#toolTip").text("You've Won!");   
+        }
+        
 
     }
 
+    /* event listener on the character cards:
+        if its the first one, assign it as the player character, and move it to the game space,
+        after the first time, each character chosen must be an enemy */
     $(".wrap").on("click", ".selectable", function () {
         if (characterChooser == true) {
             selectCharacter(this.id);
@@ -91,9 +125,9 @@ $(document).ready(function () {
             $(".character").removeClass("selectable");
         }
     });
-    
-    $("#gameSpace").on("click", ".attackButton", function () {
-        console.log("test");
+
+    /* Button event listener */
+    $(".buttonSpace").on("click", ".attackButton", function () {
         attack();
     });
 
