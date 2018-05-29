@@ -9,15 +9,19 @@ $(document).ready(function () {
     /* Sound */
     var attackSound = new Audio("assets/sounds/attack.mp3");
 
-    /* create and store attack button */
-    /*     var attackButton = $("<button>");
-        attackButton.addClass("btn btn-primary attackButton");
-        attackButton.text("Attack!"); */
-
     /* create death picture */
     var deathPic = $("<img>");
     deathPic.addClass("death");
     deathPic.attr("src", "assets/images/dead.png");
+
+    /* Retry button, just reloads page. */
+    var retry = $("<button>");
+    retry.attr("id", "retryButton");
+    retry.text("Retry");
+
+    $("#toolTip").on("click", "#retryButton", function() {
+        location = location;
+    })
 
     /* Character objects */
     var donaldTrump = {
@@ -47,6 +51,12 @@ $(document).ready(function () {
         counter: 25,
         health: 150
     }
+
+    /* initialize health */
+    $("#donaldTrump > .health").text(donaldTrump.health);
+    $("#sanders > .health").text(sanders.health);
+    $("#stormy > .health").text(stormy.health);
+    $("#meuller > .health").text(meuller.health);
 
     /* Character select functions */
     function selectCharacter(character) {
@@ -105,13 +115,20 @@ $(document).ready(function () {
             $("#" + playerCharacter).append(deathPic);
             $("#toolTip").text("You have died!");
             $(".buttonSpace > #button").removeClass("attackButton");
-            
+
+            $("#toolTip").append(" ");
+            $("#toolTip").append(retry);
+
         }
 
         /* Check if you won! */
         if (deadEnemies === 3) {
             $("#toolTip").text("You've Won!");   
             $(".buttonSpace > #button").removeClass("attackButton");
+
+            $("#toolTip").append(" ");
+            $("#toolTip").append(retry);
+
         }
         
 
