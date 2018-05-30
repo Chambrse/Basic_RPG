@@ -19,7 +19,7 @@ $(document).ready(function () {
     retry.attr("id", "retryButton");
     retry.text("Retry");
 
-    $("#toolTip").on("click", "#retryButton", function() {
+    $("#toolTip").on("click", "#retryButton", function () {
         location = location;
     })
 
@@ -65,7 +65,7 @@ $(document).ready(function () {
         /* remove the character card and move it to game space */
         playerCharacterDiv = $('#' + character).detach();
         $("#gameSpace").append(playerCharacterDiv);
-     }
+    }
 
     function selectEnemy(character) {
         /* Store the enemy */
@@ -95,22 +95,32 @@ $(document).ready(function () {
         /* Check if anyone died */
         if (eval(enemy).health <= 0 && eval(playerCharacter).health > 0) {
 
-            /* show as dead */
-            $("#" + enemy).append(deathPic);
-
-            /* Wait 2 seconds, then remove the card and make the remaining characters selectable again. */
-            setTimeout(function () {
-                $('#' + enemy).detach();
-                $("#toolTip").text("Choose another opponent!");
-                $("#charSelectArea > .wrap > .character").addClass("selectable");
-            }, 2000);
-
             /* count the dead */
             deadEnemies++;
 
-            $(".buttonSpace > #button").removeClass("attackButton");
+            /* Check if you won! */
+            if (deadEnemies === 3) {
+                $("#toolTip").text("You've Won!");
+                $(".buttonSpace > #button").removeClass("attackButton");
 
-        /* check if you dead */
+                $("#toolTip").append(" ");
+                $("#toolTip").append(retry);
+
+            } else {
+                /* show as dead */
+                $("#" + enemy).append(deathPic);
+
+                /* Wait 2 seconds, then remove the card and make the remaining characters selectable again. */
+                setTimeout(function () {
+                    $('#' + enemy).detach();
+                    $("#toolTip").text("Choose another opponent!");
+                    $("#charSelectArea > .wrap > .character").addClass("selectable");
+                }, 2000);
+
+                $(".buttonSpace > #button").removeClass("attackButton");
+
+                /* check if you dead */
+            }
         } else if (eval(playerCharacter).health <= 0) {
             $("#" + playerCharacter).append(deathPic);
             $("#toolTip").text("You have died!");
@@ -119,21 +129,11 @@ $(document).ready(function () {
             $("#toolTip").append(" ");
             $("#toolTip").append(retry);
 
-        }
 
-        /* Check if you won! */
-        if (deadEnemies === 3) {
-            $("#toolTip").text("You've Won!");   
-            $(".buttonSpace > #button").removeClass("attackButton");
 
-            $("#toolTip").append(" ");
-            $("#toolTip").append(retry);
 
-        }
-        
-
-    }
-
+        };
+    };
     /* event listener on the character cards:
         if its the first one, assign it as the player character, and move it to the game space,
         after the first time, each character chosen must be an enemy */
@@ -145,6 +145,7 @@ $(document).ready(function () {
             $('#' + this.id).removeClass("selectable");
         } else {
             selectEnemy(this.id);
+            $("#toolTip").text("Attack!");
             $(".character").removeClass("selectable");
         }
     });
