@@ -25,31 +25,31 @@ $(document).ready(function () {
 
     /* Character objects */
     var donaldTrump = {
-        baseAttack: 10,
-        attack: 10,
-        counter: 15,
-        health: 100
+        baseAttack: 25,
+        attack: 25,
+        counter: 23,
+        health: 140
     }
 
     var sanders = {
         baseAttack: 15,
         attack: 15,
-        counter: 10,
-        health: 200
+        counter: 20,
+        health: 145
     }
 
     var stormy = {
         baseAttack: 25,
         attack: 25,
-        counter: 75,
+        counter: 30,
         health: 100
     }
 
     var meuller = {
-        baseAttack: 20,
-        attack: 20,
-        counter: 25,
-        health: 150
+        baseAttack: 50,
+        attack: 50,
+        counter: 12,
+        health: 100
     }
 
     /* initialize health */
