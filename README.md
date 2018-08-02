@@ -3,6 +3,8 @@ This project is a "rpg" style game where the player must figure out
 which opponents to fight first to increase their power, and which ones
 to save for later when you are powerful enough.
 
+https://chambrse.github.io/Basic_RPG/
+
 ### Key tools/technologies
 * HTML/CSS
 * Javascript/jQuery
