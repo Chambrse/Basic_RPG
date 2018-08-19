@@ -119,18 +119,17 @@ $(document).ready(function () {
 
                 $(".buttonSpace > #button").removeClass("attackButton");
 
-                /* check if you dead */
             }
+            
+            /* check if you dead */
         } else if (eval(playerCharacter).health <= 0) {
+
             $("#" + playerCharacter).append(deathPic);
             $("#toolTip").text("You have died!");
             $(".buttonSpace > #button").removeClass("attackButton");
 
             $("#toolTip").append(" ");
             $("#toolTip").append(retry);
-
-
-
 
         };
     };
