@@ -1,10 +1,18 @@
-# unit-4-game
-Another exciting homework assignment!
-
+# Basic RPG
 This project is a "rpg" style game where the player must figure out 
 which opponents to fight first to increase their power, and which ones
 to save for later when you are powerful enough.
 
-The main objective of this homework assignment was to experiment with dynamically generated elements. I utilized jQuery to do this a bit easier. I learned a lot about this subject and was able to incorporate these techniques in later projects.
+https://chambrse.github.io/Basic_RPG/
+
+### Key tools/technologies
+* HTML/CSS
+* Javascript/jQuery
+
+### Contributors
+Shane Chambry
+
+#### To play
+  Simply load the web page and follow the instructions. Each character has a slightly different attack, counterattack, and HP attribute. First, select a character and an initial opponent. Then, attack! The players HP will decrease by the opponents counter attack value, while the opponents HP will decrease by the player's attack. After each attack, the player's attack will increase. If you can defeat each opponent before your chosen characters HP falls below zero, you win!
 
 
